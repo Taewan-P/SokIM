@@ -137,6 +137,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         case .rightCommand:
             return
+        case .rightOption:
+            return
         case .commandSpace:
             code = UInt32(kVK_Space)
             modifiers = UInt32(cmdKey)

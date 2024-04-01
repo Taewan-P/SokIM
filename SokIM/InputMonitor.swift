@@ -155,6 +155,12 @@ class InputMonitor {
                 && Preferences.rotateShortcut == .rightCommand {
                 (NSApp.delegate as! AppDelegate).statusBar.rotateEngine()
             }
+            
+            // 별도 처리: 오른쪽 Option: 한/A 표시만 우선 갱신, 실제 처리는 State에서
+            if (type, key) == (.keyDown, .rightAlt)
+                && Preferences.rotateShortcut == .rightOption {
+                (NSApp.delegate as! AppDelegate).statusBar.rotateEngine()
+            }
 
             // 별도 처리: Caps Lock: 한/A 상태 및 LED 우선 갱신, 실제 처리는 State에서
             if (type, key) == (.keyDown, .capsLock) {

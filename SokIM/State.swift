@@ -39,6 +39,13 @@ struct State: CustomStringConvertible {
                 commit()
                 rotate()
             }
+            
+            // 오른쪽 Option: 한/A 전환 실제 처리
+            if (type, key) == (.keyDown, .rightAlt)
+                && Preferences.rotateShortcut == .rightOption {
+                commit()
+                rotate()
+            }
 
             // Caps Lock: 한/A 상태 및 LED 실제 처리
             if (type, key) == (.keyDown, .capsLock) {
@@ -94,7 +101,7 @@ struct State: CustomStringConvertible {
             // Command, Shift, Alt, Control
             let isCommandDown = modifier[.leftCommand] == .keyDown || modifier[.rightCommand] == .keyDown
             let isShiftDown = modifier[.leftShift] == .keyDown || modifier[.rightShift] == .keyDown
-            let isAltDown = modifier[.leftAlt] == .keyDown || modifier[.rightAlt] == .keyDown
+            let isAltDown = modifier[.leftAlt] == .keyDown
             let isControlDown = modifier[.leftControl] == .keyDown || modifier[.rightControl] == .keyDown
 
             // Command/Shift/Control + Space: keyDown인 경우 한/A 전환
